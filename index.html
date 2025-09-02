@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>LIFF 範例：輸入框帶文字</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+  <h2>準備好啦 🚗</h2>
+  <p>請回到聊天室，訊息已經幫你填在輸入框內。</p>
+
+  <script>
+    async function main() {
+      await liff.init({ liffId: "2008038773-lKB0mjnk" }); // ← 換成你申請的 LIFF ID
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
+
+      // 自動帶字到輸入框（不會自動送出）
+      const presetText = encodeURIComponent("✈️ R i ö 機場接送
+日期： 
+時間： 
+上車： 
+下車： 
+————————————— 
+姓名： 
+電話： 
+————————————— 
+航編： 
+人數： 
+行李數/尺寸：");
+      liff.openWindow({
+        url: `line://msg/text/${presetText}`,
+        external: false
+      });
+    }
+
+    main();
+  </script>
+</body>
+</html>
