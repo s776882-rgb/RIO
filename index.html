@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>LIFF 範例：輸入框帶文字</title>
+  <meta charset="utf-8">
+  <title>LIFF Demo</title>
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 </head>
 <body>
-  <h2>準備好啦 🚗</h2>
-  <p>請回到聊天室，訊息已經幫你填在輸入框內。</p>
+  <h2>LIFF Demo 測試頁</h2>
+  <p>這個頁面會幫你把文字放到 LINE 輸入框</p>
 
   <script>
+    // TODO: 
+    const liffId = "2008038773-lKB0mjnk";
+
     async function main() {
-      await liff.init({ liffId: "2008038773-Y70nQB3m" }); // ← 換成你申請的 LIFF ID
-      if (!liff.isLoggedIn()) {
-        liff.login();
+      await liff.init({ liffId });
+
+      // 
+      if (!liff.isInClient()) {
+        alert("請用 LINE App 打開這個 LIFF 頁面！");
+        return;
       }
 
-      // 自動帶字到輸入框（不會自動送出）
-      const presetText = encodeURIComponent("✈️ R i ö 機場接送
+      // 
+      const text = "✈️ R i ö 機場接送
 日期： 
 時間： 
 上車： 
@@ -28,9 +34,9 @@
 ————————————— 
 航編： 
 人數： 
-行李數/尺寸：");
+行李數/尺寸：";
       liff.openWindow({
-        url: `line://msg/text/${presetText}`,
+        url: `line://msg/text/${encodeURIComponent(text)}`,
         external: false
       });
     }
