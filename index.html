@@ -6,22 +6,22 @@
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 </head>
 <body>
+  <h2>✈️ R i ö 機場接送</h2>
+  <p>請回到 LINE 聊天室，訊息已經幫你填好囉！</p>
 
   <script>
-    // TODO: 
-    const liffId = "2008038773-5mAEnkGj";
+    const liffId = "2008038773-lKB0mjnk"; // 你的 LIFF ID
 
     async function main() {
       await liff.init({ liffId });
 
-      // 
       if (!liff.isInClient()) {
-        alert("請用 LINE App 打開這個 LIFF 頁面！");
+        alert("請在 LINE App 內打開這個連結！");
         return;
       }
 
-      // 
-      const text = "✈️ R i ö 機場接送
+      // 要帶入聊天框的文字
+      const presetText = `✈️ R i ö 機場接送
 日期： 
 時間： 
 上車： 
@@ -32,9 +32,11 @@
 ————————————— 
 航編： 
 人數： 
-行李數/尺寸：";
+行李數/尺寸：`;
+
+      // 自動打開聊天框，文字填入輸入框
       liff.openWindow({
-        url: `line://msg/text/${encodeURIComponent(text)}`,
+        url: `line://msg/text/${encodeURIComponent(presetText)}`,
         external: false
       });
     }
